@@ -4,6 +4,7 @@ import com.api.utils.ConfigLoader;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.testng.Assert;
@@ -18,6 +19,10 @@ public class ApiStepDefinitions {
     @Given("User set the API base URL")
     public void user_set_the_api_base_url() {
         String baseUrl = configLoader.getBaseUrl();
+        if (baseUrl == null) {
+            throw new RuntimeException("Base Url not found");
+        }
+        RestAssured.baseURI = baseUrl;
     }
 
     @When("User send a GET request to {string}")
