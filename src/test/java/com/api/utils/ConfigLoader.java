@@ -9,7 +9,9 @@ public class ConfigLoader {
     public ConfigLoader() {
         properties = new Properties();
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config.properties")) {
-            properties.load(inputStream);
+
+                properties.load(inputStream);
+
         } catch (Exception e) {
             e.printStackTrace();
         }
