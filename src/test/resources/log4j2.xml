@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="WARN">
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+        </Console>
+
+        <RollingFile name="RollingFile" fileName="logs/LogsGenerated.log"
+                     filePattern="logs/LogsGenerated-%d{yyyy-MM-dd}-%i.log.gz">
+            <PatternLayout pattern="[%-5level] %d{yyyy-MM-dd HH:mm:ss.SSS} [%t] %c{1} - %msg%n"/>
+            <Policies>
+                <SizeBasedTriggeringPolicy size="10MB"/> <!-- Trigger rollover at 10MB -->
+                <TimeBasedTriggeringPolicy interval="1" modulate="false"/> <!-- Roll over every day -->
+            </Policies>
+            <DefaultRolloverStrategy max="0"/> <!-- Keep no old logs -->
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <Logger name="com.api" level="debug" additivity="false">
+            <AppenderRef ref="RollingFile"/>
+        </Logger>
+
+        <Root level="debug">
+            <AppenderRef ref="Console"/>
+            <AppenderRef ref="RollingFile"/>
+        </Root>
+    </Loggers>
+</Configuration>
