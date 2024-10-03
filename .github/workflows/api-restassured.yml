@@ -5,12 +5,16 @@ on:
     branches:
       - master
 
+  schedule:
+    - cron: '0 0 * * 1'  # runs every Sunday at 7 30 PM IST
+
+  workflow_dispatch:
+
 jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
-    steps:
-      # 1. Checkout the repository
+    steps: # 1. Checkout the repository
       - name: Checkout Code
         uses: actions/checkout@v3
 
