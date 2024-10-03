@@ -45,16 +45,22 @@ public class ApiStepDefinitions {
 
     @When("User send a GET request to {string}")
     public void user_send_a_request_to(String endpoint) {
+        if (endpoint == null) {
+            logger.error("Endpoint not found");
+        }
         response = given().when().get(endpoint);
+        logger.info("API Endpoint set to: " + endpoint);
     }
 
     @Then("the API response statue code should be {int}")
     public void the_response_status_code_should_be(Integer statusCode) {
         Assert.assertEquals(statusCode.intValue(), response.getStatusCode());
+        logger.info("API status code: " + statusCode);
     }
 
     @Then("the response should contain {string}")
     public void the_response_should_contain(String data) {
         Assert.assertNotNull(response.jsonPath().get(data));
+        logger.info("API response:" + data);
     }
 }
