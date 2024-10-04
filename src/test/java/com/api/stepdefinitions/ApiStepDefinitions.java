@@ -54,7 +54,7 @@ public class ApiStepDefinitions {
 
     @Then("the API response statue code should be {int}")
     public void the_response_status_code_should_be(Integer statusCode) {
-        Assert.assertEquals(statusCode.intValue(), response.getStatusCode());
+        Assert.assertEquals(response.getStatusCode(), statusCode.intValue());
         logger.info("API status code: " + statusCode);
     }
 
