@@ -9,9 +9,7 @@ public class ConfigLoader {
     public ConfigLoader() {
         properties = new Properties();
         try (InputStream inputStream = getClass().getClassLoader().getResourceAsStream("config.properties")) {
-
-                properties.load(inputStream);
-
+            properties.load(inputStream);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -19,5 +17,9 @@ public class ConfigLoader {
 
     public String getBaseUrl() {
         return properties.getProperty("baseUrl");
+    }
+
+    public String getBaseUrl1() {
+        return properties.getProperty("baseUrl1");
     }
 }
